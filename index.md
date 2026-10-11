@@ -14,9 +14,11 @@ Welcome to the central hub for learning modern Web Development. This repository 
 Click on any topic below to access detailed notes, code examples, and curated resources:
 
 *   🗺️ **[Web Development Roadmap](roadmap.md)** — Step-by-step career and skill path.
-*   🏗️ **[HTML5 Module](html/index.md)** — Semantic markup, accessibility, and modern document structure.
-*   🎨 **[CSS3 Module](css/index.md)** — Responsive design, Flexbox, Grid, and modern styling.
-*   ⚡ **[JavaScript Module](javascript/index.md)** — Core syntax, DOM manipulation, asynchronous programming, and ES6+.
+* 🏗️ **[HTML5 Module](./html/)** — Semantic markup, accessibility, and modern document structure.
+* 🎨 **[CSS3 Module](./css/)** — Responsive design, Flexbox, Grid, and modern styling.
+* ⚡ **[JavaScript Module](./javascript/)** — Core syntax, DOM manipulation, asynchronous programming, and ES6+.
+
+
 
 ---
 

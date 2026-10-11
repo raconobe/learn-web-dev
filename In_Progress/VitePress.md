@@ -372,3 +372,109 @@ Refresh the **Actions** page in your browser (`[github.com/raconobe/learn-web-de
 
 
 `[https://raconobe.github.io/learn-web-dev/](https://raconobe.github.io/learn-web-dev/)`
+
+
+
+---
+L-
+---
+
+
+
+That explains why GitHub Actions hasn't triggered yet! The `.github/workflows` folder hasn't been created on your machine.
+
+Let's create the folder and the `deploy.yml` workflow file right now.
+
+1. **Create the Workflows Directory:** Terminal.
+Run this command in your terminal inside `learn-web-dev`:
+
+```bash
+mkdir -p .github/workflows
+
+```
+
+**Verification:** Run `ls -la .github` to confirm the `workflows` directory exists.
+
+
+2. **Create the Deployment Workflow File:** .github/workflows/deploy.yml.
+Open the new workflow file in `nano`:
+
+```bash
+nano .github/workflows/deploy.yml
+
+```
+
+Paste the complete deployment script below:
+
+```yaml
+name: Deploy VitePress site to Pages
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Build site
+        run: npx vitepress build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .vitepress/dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+```
+
+Save and exit (`Ctrl + O`, `Enter`, `Ctrl + X`).
+
+
+3. **Stage, Commit, and Push to GitHub:** Terminal.
+Now push the new workflow file to GitHub using your personal SSH profile (`github.com-raco`):
+
+```bash
+git add .
+git commit -m "Add GitHub Actions workflow for VitePress deployment"
+git push -u origin main
+
+```
+
+**Verification:** Refresh your browser on the **Actions** tab (`[github.com/raconobe/learn-web-dev/actions](https://github.com/raconobe/learn-web-dev/actions)`). You will immediately see **"Deploy VitePress site to Pages"** starting to build!
+
+
+
