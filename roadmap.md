@@ -14,6 +14,7 @@ A structured breakdown of skills required to master full-stack web development.
 - [ ] Forms, Inputs, and Validations
 - [ ] Accessibility Best Practices (ARIA)
 
+
 ### 2. CSS3 (Styling & Layout)
 - [ ] The Box Model (Margin, Padding, Border, Box-sizing)
 - [ ] CSS Selectors & Specificity

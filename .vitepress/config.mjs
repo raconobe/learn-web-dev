@@ -10,7 +10,8 @@ export default defineConfig({
       { text: 'Frontend', link: '/frontend/' },
       { text: 'Backend', link: '/backend/' },
       { text: 'Languages', link: '/languages/' },
-      { text: 'Tools & OS', link: '/tools-os/' }
+      { text: 'Tools & OS', link: '/tools-os/' },
+      { text: 'About', link: '/about' }
     ],
     sidebar: {
       '/frontend/': [

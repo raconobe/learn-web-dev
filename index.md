@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "Developer Vault"
   text: "Full-Stack Roadmap & Resources"
-  tagline: "Structured guides across Frontend, Backend, Languages, and Linux Systems."
+  tagline: "Structured guides across Frontend, Backend, Languages, and Linux Systems.        "
   actions:
     - theme: brand
       text: Frontend
@@ -31,3 +31,5 @@ features:
     details: Version control with Git, Debian Linux administration, and CLI tools.
     link: /tools-os/
 ---
+
+
