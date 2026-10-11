@@ -3,6 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "Learn Web Dev",
   description: "Web Development Roadmap & Resources",
+  base: '/learn-web-dev/', // REQUIRED for GitHub Pages styling
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
