@@ -478,3 +478,82 @@ git push -u origin main
 
 
 
+---
+L
+---
+That happens because the CSS and JavaScript assets are returning **404 errors** on GitHub Pages.
+
+When we removed `base` from `.vitepress/config.mjs`, local development worked, but GitHub Pages serves your site at a subpath (`/learn-web-dev/`). Without setting `base: '/learn-web-dev/'`, the browser looks for the styling files at `[https://raconobe.github.io/assets/](https://raconobe.github.io/assets/)...` instead of `[https://raconobe.github.io/learn-web-dev/assets/](https://raconobe.github.io/learn-web-dev/assets/)...`.
+
+Here is how to fix it so **both** local preview and GitHub Pages work perfectly:
+
+1. **Add base Path Back to Config:** .vitepress/config.mjs.
+Open `.vitepress/config.mjs` in VS Code or run:
+
+```bash
+nano .vitepress/config.mjs
+
+```
+
+Update the configuration file to include `base: '/learn-web-dev/'`:
+
+```javascript
+import { defineConfig } from 'vitepress'
+
+export default defineConfig({
+  title: "Learn Web Dev",
+  description: "Web Development Roadmap & Resources",
+  base: '/learn-web-dev/', // REQUIRED for GitHub Pages styling
+  themeConfig: {
+    nav: [
+      { text: 'Home', link: '/' },
+      { text: 'Roadmap', link: '/roadmap' },
+      { text: 'HTML', link: '/html/' },
+      { text: 'CSS', link: '/css/' },
+      { text: 'JavaScript', link: '/javascript/' }
+    ],
+    sidebar: [
+      {
+        text: 'Overview',
+        items: [
+          { text: 'Introduction', link: '/' },
+          { text: 'Roadmap', link: '/roadmap' }
+        ]
+      },
+      {
+        text: 'Modules',
+        items: [
+          { text: 'HTML Fundamentals', link: '/html/' },
+          { text: 'CSS & Styling', link: '/css/' },
+          { text: 'JavaScript Programming', link: '/javascript/' }
+        ]
+      }
+    ]
+  }
+})
+
+```
+
+Save and exit (`Ctrl + O`, `Enter`, `Ctrl + X`).
+
+
+2. **Commit and Push the Fix:** Terminal.
+Push the updated configuration to GitHub:
+
+```bash
+git add .vitepress/config.mjs
+git commit -m "Fix VitePress base path for GitHub Pages CSS assets"
+git push -u origin main
+
+```
+
+
+3. **Verify Live Site Styling:** Browser.
+1. Go to your **Actions** tab on GitHub and wait ~1 minute for the workflow to finish building.
+2. Refresh `[https://raconobe.github.io/learn-web-dev/](https://raconobe.github.io/learn-web-dev/)`.
+
+
+
+*(If it still looks unstyled, press `Ctrl + Shift + R` or `Ctrl + F5` to do a hard refresh and clear your browser's CSS cache).*
+
+**Note for Local Testing:** When running `npm run docs:dev` locally with `base` enabled, access the site at `http://localhost:5173/learn-web-dev/`.
