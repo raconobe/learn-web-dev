@@ -557,3 +557,161 @@ git push -u origin main
 *(If it still looks unstyled, press `Ctrl + Shift + R` or `Ctrl + F5` to do a hard refresh and clear your browser's CSS cache).*
 
 **Note for Local Testing:** When running `npm run docs:dev` locally with `base` enabled, access the site at `http://localhost:5173/learn-web-dev/`.
+
+
+
+
+---
+
+
+
+
+
+The issue is caused by lines 3 and 4 in your root `index.md` file:
+
+```markdown
+Web Development Vault Hub
+web_development_vault_hub
+
+```
+
+In Markdown, typing text on consecutive lines directly above another line turns that text into an **`<h1>` heading syntax** (setext header style). This breaks VitePress's frontmatter parser and layout layout engine on the main homepage, stripping the theme CSS styles.
+
+In VitePress, the root `index.md` requires YAML frontmatter at the very top to render the home layout properly.
+
+---
+
+### Step 1: Replace Root `index.md` with Frontmatter
+
+Open `index.md` in your editor and replace its entire content with this structured VitePress home template:
+
+```markdown
+---
+layout: home
+
+hero:
+  name: "Web Development Vault"
+  text: "Learning Roadmap & Resources"
+  tagline: "Structured modules, curated resources, and step-by-step paths."
+  actions:
+    - theme: brand
+      text: Explore Roadmap
+      link: /roadmap
+    - theme: alt
+      text: Start HTML
+      link: /html/
+
+features:
+  - icon: 🏗️
+    title: HTML5 Fundamentals
+    details: Semantic markup, accessibility, and modern document structure.
+    link: /html/
+  - icon: 🎨
+    title: CSS3 & Styling
+    details: Responsive design, Flexbox, CSS Grid, and modern UI styling.
+    link: /css/
+  - icon: ⚡
+    title: JavaScript Programming
+    details: Core syntax, DOM manipulation, async JavaScript, and modern ES6+.
+    link: /javascript/
+---
+
+## 🎯 How to Use This Vault
+
+1. **Follow the Roadmap:** Start with the [Roadmap](/roadmap) to understand key concepts in logical order.
+2. **Explore Modules:** Read through each technology section (`/html/`, `/css/`, `/javascript/`).
+3. **Practice & Build:** Complete the recommended mini-projects in each module before proceeding.
+
+```
+
+---
+
+### Step 2: Push the Fix to GitHub
+
+Run the following commands in your terminal to update GitHub:
+
+```bash
+git add index.md
+git commit -m "Fix root index.md layout using VitePress frontmatter"
+git push -u origin main
+
+```
+
+---
+
+### Step 3: Clear Browser Cache
+
+1. Go to your **Actions** tab on GitHub and wait ~1 minute for the build to finish.
+2. Visit `[https://raconobe.github.io/learn-web-dev/](https://raconobe.github.io/learn-web-dev/)`[cite: 11].
+3. Press **`Ctrl + Shift + R`** (or `Ctrl + F5`) to force a hard reload and bypass cached unstyled assets.
+
+
+---
+
+**Yes, exactly!** The `layout: home` block is VitePress's built-in home page template, and `theme: brand` / `theme: alt` simply control the **color styling of the call-to-action buttons** (for example, `brand` gives your main button your primary theme accent color, while `alt` gives a secondary/outlined button style).
+
+However, in your snippet, the **YAML formatting/indentation is broken** (the `-` bullet points are on separate lines from their properties). YAML is extremely strict about indentation—if pushed like that to GitHub Pages, the parser will fail and cause another unstyled/broken build.
+
+Here is the exact, properly formatted version of `index.md` to paste into your file:
+
+```markdown
+---
+layout: home
+
+hero:
+  name: "Web Development Vault"
+  text: "Learning Roadmap & Resources"
+  tagline: "Structured modules, curated resources, and step-by-step paths."
+  actions:
+    - theme: brand
+      text: Explore Roadmap
+      link: /roadmap
+    - theme: alt
+      text: Start HTML
+      link: /html/
+
+features:
+  - icon: 🏗️
+    title: HTML5 Fundamentals
+    details: Semantic markup, accessibility, and modern document structure.
+    link: /html/
+  - icon: 🎨
+    title: CSS3 & Styling
+    details: Responsive design, Flexbox, CSS Grid, and modern UI styling.
+    link: /css/
+  - icon: ⚡
+    title: JavaScript Programming
+    details: Core syntax, DOM manipulation, async JavaScript, and modern ES6+.
+    link: /javascript/
+---
+
+## 🎯 How to Use This Vault
+
+1. **Follow the Roadmap:** Start with the [Roadmap](/roadmap) to understand key concepts in logical order.
+2. **Explore Modules:** Read through each technology section (`/html/`, `/css/`, `/javascript/`).
+3. **Practice & Build:** Complete the recommended mini-projects in each module before proceeding.
+
+```
+
+### Push the Fix to GitHub
+
+Save the file and run these commands in your terminal:
+
+```bash
+git add index.md
+git commit -m "Fix YAML frontmatter indentation on index.md"
+git push -u origin main
+
+```
+
+Once the GitHub Actions workflow finishes building in ~1 minute, do a hard refresh in your browser (**`Ctrl + Shift + R`** or **`Ctrl + F5`**) at `[https://raconobe.github.io/learn-web-dev/](https://raconobe.github.io/learn-web-dev/)`[cite: 10], and your live site will render with the full hero banner and styled buttons!
+
+
+
+---
+
+You can learn more about configuring VitePress home pages and frontmatter in the official documentation:
+
+* [VitePress Frontmatter & Home Layout Documentation](https://www.google.com/search?q=https://vitepress.dev/guide/cms%23home-page)
+
+It covers all available options for the `hero` section, `actions` buttons, `features` grids, and custom styling options.
