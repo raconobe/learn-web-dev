@@ -95,3 +95,58 @@ git push -u origin main
 ```
 
 **Verification:** Open `[https://raconobe.github.io/learn-web-dev/](https://raconobe.github.io/learn-web-dev/)` in your browser once the GitHub Actions deployment completes.
+
+
+
+
+----
+
+
+
+When you build a VitePress project, the conversion happens during the build process, and the generated `.html` files are stored in a hidden directory inside your project:
+
+```text
+learn-web-dev/.vitepress/dist/
+
+```
+
+### How to See the Converted HTML Files
+
+Run the build command in your terminal:
+
+```bash
+cd ~/Desktop/projects-vault-raco/learn-web-dev
+npm run docs:build
+
+```
+
+Once the build finishes, you can inspect the generated files inside `.vitepress/dist`:
+
+```bash
+ls -la .vitepress/dist
+
+```
+
+### How Markdown Files Map to HTML Output
+
+VitePress converts your directory and Markdown structure into standard static HTML files:
+
+| Source Markdown File | Compiled HTML Output File | Served Route URL |
+| --- | --- | --- |
+| `index.md` | `.vitepress/dist/index.html` | `/` |
+| `about.md` | `.vitepress/dist/about.html` | `/about` |
+| `roadmap.md` | `.vitepress/dist/roadmap.html` | `/roadmap` |
+| `frontend/index.md` | `.vitepress/dist/frontend/index.html` | `/frontend/` |
+| `frontend/html.md` | `.vitepress/dist/frontend/html.html` | `/frontend/html` |
+| `backend/node.md` | `.vitepress/dist/backend/node.html` | `/backend/node` |
+
+---
+
+### What Inside `.vitepress/dist` Looks Like
+
+When you deploy your site to **GitHub Pages**, **Firebase Hosting**, or any web host, it is **only the `.vitepress/dist/` folder** that gets uploaded.
+
+That folder contains:
+
+* Complete static `.html` pages for every `.md` file.
+* An `assets/` subfolder containing JavaScript, bundled CSS, optimized fonts, and images.
