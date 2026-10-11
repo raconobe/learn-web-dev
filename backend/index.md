@@ -14,6 +14,8 @@ Welcome to the Backend Development section. This module focuses on server-side a
 
 ## 🚀 Quick Links
 
-- [Node.js Architecture](./node.md)
-- [PHP & Web Engines](./php.md)
-- [Go Systems Programming](./go.md)
+
+
+* [Node.js Architecture](/backend/node)
+* [PHP & Web Engines](/backend/php)
+* [Go Systems Programming](/backend/go)

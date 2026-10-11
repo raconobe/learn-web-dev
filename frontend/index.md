@@ -14,5 +14,6 @@ Welcome to the Frontend Development section. This module covers essential web te
 
 ## 🚀 Quick Links
 
-- [HTML5 Fundamentals](./html.md)
-- [CSS3 & Modern Styling](./css.md)
+
+* [HTML5 Fundamentals](/frontend/html)
+* [CSS3 & Modern Styling](/frontend/css)

@@ -13,5 +13,6 @@ Welcome to the Tools & OS section. This module covers system administration, CLI
 
 ## 🚀 Quick Links
 
-- [Git Version Control Guides](./git.md)
-- [Debian Linux Administration](./debian.md)
+
+* [Git Version Control Guides](/tools-os/git)
+* [Debian Linux Administration](/tools-os/debian)

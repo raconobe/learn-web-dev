@@ -3,6 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "Dev Learning Vault",
   description: "Comprehensive Web Dev, Backend, Languages & OS Knowledge Hub",
+  srcExclude: ['**/In_Progress/**'], // Ignore draft or in-progress files
   base: '/learn-web-dev/',
   themeConfig: {
     nav: [

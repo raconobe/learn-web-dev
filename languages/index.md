@@ -14,6 +14,8 @@ Welcome to the Programming Languages section. This module provides reference gui
 
 ## 🚀 Quick Links
 
-- [Python Reference](./python.md)
-- [Java Reference](./java.md)
-- [C / C++ Reference](./cpp.md)
+
+
+* [Python Reference](/languages/python)
+* [Java Reference](/languages/java)
+* [C / C++ Reference](/languages/cpp)
