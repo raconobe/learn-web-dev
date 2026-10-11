@@ -1,5 +1,5 @@
 # ⚡ JavaScript Module
-
+javascript_module
 JavaScript adds interactivity, logic, and dynamic data handling to web pages.
 
 ---
