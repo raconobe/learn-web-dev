@@ -321,7 +321,7 @@ export default defineConfig({
 ---
 
 
-
+npm run docs:build
 git add .
 git commit -m "Add About module and updated VitePress index files"
 git push -u origin main
