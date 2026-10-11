@@ -340,3 +340,35 @@ git push -u origin main
 
 
 
+---
+
+
+The "Get started with GitHub Actions" page appears because the `.github/workflows/deploy.yml` file has not been committed and pushed to your remote repository yet.
+
+Follow these steps to commit the workflow file and push it to GitHub:
+
+1. **Verify the workflow file exists locally**
+Run this in your terminal:
+```bash
+ls -la .github/workflows/
+
+```
+
+
+*Expected output:* You should see `deploy.yml`.
+2. **Stage, commit, and push all files to GitHub**
+Execute these commands inside your `learn-web-dev` directory:
+```bash
+cd ~/Desktop/projects-vault-raco/learn-web-dev
+git add .
+git commit -m "Add GitHub Actions workflow for VitePress deployment"
+git push -u origin main
+
+```
+
+
+3. **Check the Actions tab again**
+Refresh the **Actions** page in your browser (`[github.com/raconobe/learn-web-dev/actions](https://github.com/raconobe/learn-web-dev/actions)`). You will now see your **"Deploy VitePress site to Pages"** workflow running automatically. Once completed, your live site will be accessible at:
+
+
+`[https://raconobe.github.io/learn-web-dev/](https://raconobe.github.io/learn-web-dev/)`
